@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Platform for Excel</title>
+<meta name="description" content="Download the Data Platform add-in for Excel by D8A AI XYZ: tables and matrices from approved Power BI semantic models, refreshed as you.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+  @font-face {
+    font-family: "Archivo";
+    src: url("assets/archivo-variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  :root {
+    --ink: #1A1C21;
+    --ink-body: #33363D;
+    --ink-muted: #5C6069;
+    --border: #D6D7DB;
+    --border-subtle: #EDEDEB;
+    --border-control: #5C6069;
+    --accent: #5A4BE8;
+    --accent-wash: #EEECFF;
+    --surface: #FAFAFA;
+    --surface-raised: #FFFFFF;
+    --radius: 6px;
+    --shadow: 0 8px 24px rgba(26, 28, 33, 0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--surface);
+    color: var(--ink-body);
+    font: 400 15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 28px 0 8px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  header img { height: 36px; width: auto; display: block; }
+  header nav a { margin-left: 18px; font-size: 14px; text-decoration: none; color: var(--ink-muted); }
+  header nav a:hover { color: var(--accent); }
+  .hero { padding: 40px 0 24px; }
+  .eyebrow { font-size: 13px; color: var(--ink-muted); letter-spacing: 0.02em; margin: 0 0 10px; }
+  h1 { font: 600 40px/1.1 "Archivo", "Segoe UI", sans-serif; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 14px; }
+  .lead { font-size: 18px; max-width: 640px; margin: 0 0 28px; }
+  .card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); padding: 28px; }
+  .version { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+  .version strong { font: 600 22px/1.2 "Archivo", "Segoe UI", sans-serif; color: var(--ink); }
+  .version span { color: var(--ink-muted); font-size: 14px; }
+  .buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;
+    padding: 12px 18px; border-radius: var(--radius); text-decoration: none; min-width: 240px;
+    border: 1px solid var(--accent); font-size: 15px; line-height: 1.3; transition: background .12s, color .12s;
+  }
+  .btn small { font-size: 12px; opacity: .85; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: #4A3BD8; }
+  .btn.secondary { background: var(--surface-raised); color: var(--accent); }
+  .btn.secondary:hover { background: var(--accent-wash); }
+  .which { margin: 16px 0 0; font-size: 14px; color: var(--ink-muted); }
+  .files { margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid var(--border-subtle); font-size: 14px; }
+  .files a { margin-right: 18px; }
+  .notice { margin-top: 18px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; }
+  section { padding: 36px 0 0; }
+  h2 { font: 600 24px/1.2 "Archivo", "Segoe UI", sans-serif; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 14px; }
+  h3 { font: 600 16px/1.3 "Segoe UI", sans-serif; color: var(--ink); margin: 22px 0 8px; }
+  ul, ol { padding-left: 22px; margin: 0; }
+  li { margin: 6px 0; }
+  code, pre { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; font-size: 13.5px; }
+  code { background: var(--accent-wash); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
+  pre { background: var(--ink); color: #F4F4F6; padding: 14px 16px; border-radius: var(--radius); overflow-x: auto; margin: 10px 0 0; }
+  pre code { background: none; color: inherit; padding: 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .doc { display: block; padding: 16px 18px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: inherit; transition: border-color .12s, background .12s; }
+  .doc:hover { border-color: var(--accent); background: var(--accent-wash); }
+  .doc strong { display: block; color: var(--ink); margin-bottom: 4px; }
+  .doc span { font-size: 13.5px; color: var(--ink-muted); }
+  footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--border); font-size: 13px; color: var(--ink-muted); }
+  footer p { margin: 6px 0; }
+  @media (max-width: 600px) {
+    h1 { font-size: 32px; }
+    .btn { min-width: 100%; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="https://d8aaixyz.com" aria-label="D8A AI XYZ"><img src="assets/d8aaixyz-primary-full-graphite.svg" alt="D8A AI XYZ"></a>
+    <nav aria-label="Page">
+      <a href="#download">Download</a>
+      <a href="#install">Install</a>
+      <a href="#docs">Documentation</a>
+      <a href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <p class="eyebrow">An Excel add-in by D8A AI XYZ</p>
+      <h1>Data Platform for Excel</h1>
+      <p class="lead">Put data from your organisation's approved Power BI models into Excel. Pick a workspace, a model, the fields you need and any filters, and get a table or a PivotTable that refreshes whenever you like, always as you. Nothing is hosted between Excel and Power BI.</p>
+
+      <div class="card" id="download">
+        <div class="version">
+          <strong id="version-label">Data Platform 0.1.0</strong>
+          <span id="version-date">Released 2 October 2026</span>
+        </div>
+        <div class="buttons">
+          <a class="btn primary" id="btn-x64" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/releases/latest/download/DataPlatform-0.1.0-x64.msi">
+            Download for 64-bit Excel
+            <small id="size-x64">Windows installer (MSI), x64</small>
+          </a>
+          <a class="btn secondary" id="btn-x86" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/releases/latest/download/DataPlatform-0.1.0-x86.msi">
+            Download for 32-bit Excel
+            <small id="size-x86">Windows installer (MSI), x86</small>
+          </a>
+        </div>
+        <p class="which">Not sure which? In Excel open File › Account › About Excel. Most PCs run 64-bit Office.</p>
+        <div class="files">
+          <a id="link-sbom" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/releases/latest/download/DataPlatform-0.1.0.cdx.json">Software bill of materials</a>
+          <a id="link-sums" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/releases/latest/download/SHA256SUMS.txt">SHA-256 checksums</a>
+          <a id="link-release" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/releases/latest">Release notes</a>
+        </div>
+        <div class="notice">The installer is not yet code-signed, so Windows SmartScreen may say "Windows protected your PC". Choose <strong>More info</strong>, then <strong>Run anyway</strong>. To check the file, compare its SHA-256 with the checksums file.</div>
+      </div>
+    </div>
+
+    <section id="requirements">
+      <h2>What a PC needs</h2>
+      <ul>
+        <li>Windows 10 or 11 with Excel for Microsoft 365 (the desktop app). Excel for the web, Mac and mobile open the workbooks and show the values last saved in them.</li>
+        <li>The <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 Desktop Runtime</a> of the same bitness as Office. The installer checks for it and stops with a message if it is missing.</li>
+        <li>Local administrator rights. It is a per-machine install; every user of the PC gets the Data Platform tab.</li>
+        <li>Your organisation's configuration file, <code>config.json</code>: the tenant, the app registration and the approved workspaces. Without it the add-in has nothing to connect to. Your IT team prepares it with D8A; the deployment guide explains it.</li>
+      </ul>
+    </section>
+
+    <section id="install">
+      <h2>Install</h2>
+      <h3>From the command line</h3>
+      <p>From an administrator PowerShell, in the folder holding the MSI, with Excel closed. <code>CONFIGDIR</code> is the full path of a folder that holds <code>config.json</code>.</p>
+      <pre><code>msiexec /i "DataPlatform-0.1.0-x64.msi" /qn /norestart CONFIGDIR="C:\Deploy\DataPlatform" /l*v "$env:TEMP\DataPlatform-install.log"</code></pre>
+      <h3>By double-click</h3>
+      <p>Double-clicking the MSI also works. A double-click cannot pass <code>CONFIGDIR</code>, so afterwards copy <code>config.json</code> into <code>%ProgramData%\D8A\DataPlatform\</code> as an administrator.</p>
+      <h3>First use</h3>
+      <ol>
+        <li>Every user gets the tab after their next Windows sign-in. To have it at once, run the registration once as yourself:
+          <pre><code>&amp; "C:\Program Files\D8A\DataPlatform\D8A.DataPlatform.Register.exe" --register "C:\Program Files\D8A\DataPlatform\D8A.DataPlatform64.xll"</code></pre></li>
+        <li>Start Excel. The Data Platform tab is there (key tip: Alt, G). Choose <strong>Account › Sign in</strong>; the Windows account picker appears.</li>
+        <li>Turn Excel's native-query approval off once: Data › Get Data › Query Options › Security, untick "Require user approval for new native database queries". Otherwise every load asks.</li>
+        <li><strong>New Table</strong>: workspace, model, perspective, fields, filters, Load.</li>
+      </ol>
+      <p>A newer version installs over the old one with the same command and keeps <code>config.json</code>. Uninstall with <code>msiexec /x "DataPlatform-0.1.0-x64.msi" /qn /norestart</code> or from Settings › Apps. Intune and SCCM deployment, upgrades and troubleshooting are in the deployment guide.</p>
+    </section>
+
+    <section id="docs">
+      <h2>Documentation</h2>
+      <div class="grid">
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/blob/main/docs/23-quick-guide.md"><strong>Quick guide</strong><span>For users and trainers: the tab, New Table in six steps, refreshing, the filter cells, what "as you" means, what to do when something goes wrong.</span></a>
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/blob/main/docs/21-deployment-guide.md"><strong>Deployment guide</strong><span>For IT: prerequisites, the configuration file, install routes (command line, Intune, SCCM), upgrade, uninstall, troubleshooting.</span></a>
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/blob/main/docs/22-release-test-script.md"><strong>Release test script</strong><span>For testers and IT: the checks per release, from install to data safety.</span></a>
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/blob/main/docs/24-accessibility-test-script.md"><strong>Accessibility test script</strong><span>Keyboard, Narrator, contrast and zoom checks.</span></a>
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/blob/main/docs/installer-identifiers.md"><strong>Installer identifiers</strong><span>For packagers: the fixed UpgradeCodes and Active Setup ids, and how CONFIGDIR behaves.</span></a>
+        <a class="doc" href="https://github.com/DATA-AI-XYZ/data-platform-excel-addin/issues"><strong>Report a problem</strong><span>Open an issue. Include the DP-E code the add-in showed and the text from Account › Copy diagnostics.</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 D8A AI XYZ. No licence has been chosen yet: all rights reserved, evaluation use permitted. "D8A AI XYZ" and the D8A mark are trademarks of D8A AI XYZ.</p>
+    <p>Archivo is used under the SIL Open Font Licence 1.1. Logs stay on the PC and never hold data values, names or tokens.</p>
+  </footer>
+</div>
+
+<script>
+  // Fill the version, dates, sizes and links from the latest GitHub release; the static links above are the fallback.
+  (async function () {
+    try {
+      const r = await fetch("https://api.github.com/repos/DATA-AI-XYZ/data-platform-excel-addin/releases/latest", { headers: { Accept: "application/vnd.github+json" } });
+      if (!r.ok) return;
+      const rel = await r.json();
+      const version = (rel.tag_name || "").replace(/^v/, "");
+      if (version) document.getElementById("version-label").textContent = "Data Platform " + version;
+      if (rel.published_at) {
+        const d = new Date(rel.published_at);
+        document.getElementById("version-date").textContent = "Released " + d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+      }
+      const mb = (n) => (n / 1048576).toFixed(1) + " MB";
+      for (const a of rel.assets || []) {
+        if (/-x64\.msi$/i.test(a.name)) { document.getElementById("btn-x64").href = a.browser_download_url; document.getElementById("size-x64").textContent = "Windows installer (MSI), x64, " + mb(a.size); }
+        else if (/-x86\.msi$/i.test(a.name)) { document.getElementById("btn-x86").href = a.browser_download_url; document.getElementById("size-x86").textContent = "Windows installer (MSI), x86, " + mb(a.size); }
+        else if (/\.cdx\.json$/i.test(a.name)) { document.getElementById("link-sbom").href = a.browser_download_url; }
+        else if (/^SHA256SUMS/i.test(a.name)) { document.getElementById("link-sums").href = a.browser_download_url; }
+      }
+      if (rel.html_url) document.getElementById("link-release").href = rel.html_url;
+    } catch (e) { /* the static links stand */ }
+  })();
+</script>
+</body>
+</html>

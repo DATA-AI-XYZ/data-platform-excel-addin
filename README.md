@@ -4,6 +4,8 @@ An Excel add-in by D8A AI XYZ. It adds a **Data Platform** tab to Excel for Micr
 
 This repository publishes the **installer releases** and the **user and IT documentation**. The source code is developed in a private D8A repository.
 
+**Download page:** https://data-ai-xyz.github.io/data-platform-excel-addin/
+
 ## Download
 
 Releases are on the [Releases page](../../releases). Each release carries:
@@ -17,7 +19,7 @@ Releases are on the [Releases page](../../releases). Each release carries:
 
 Excel's bitness is under File › Account › About Excel. Each MSI refuses a PC whose Office is the other bitness.
 
-The current release is a **release candidate**, unsigned. Windows SmartScreen may say "Windows protected your PC"; More info › Run anyway continues. To check a download, compare its hash with `SHA256SUMS.txt`:
+The installer is not yet code-signed, so Windows SmartScreen may say "Windows protected your PC"; More info › Run anyway continues. To check a download, compare its hash with `SHA256SUMS.txt`:
 
 ```powershell
 Get-FileHash .\DataPlatform-<version>-x64.msi -Algorithm SHA256
@@ -64,10 +66,9 @@ These are public copies of D8A's internal documents. References to other numbere
 
 ## Status
 
-Release candidate for pilot use. Known limits of this build:
+Version 0.1.0 is the first release. Known limits:
 
 - Unsigned installer (code signing is not yet decided), so SmartScreen warns on download and double-click.
-- The MSI is 0.1.0 for every release candidate, so a later candidate installs over an earlier one.
 - Logs are local only, at `%LOCALAPPDATA%\D8A\DataPlatform\logs`; they never hold data values, names or tokens. Account › Copy diagnostics puts the recent log and the version on the clipboard for a support request.
 
 Problems and questions: open an issue in this repository. Please include the DP-E code the add-in showed and the diagnostics text from Account › Copy diagnostics.
